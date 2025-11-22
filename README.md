@@ -27,6 +27,7 @@ Public subnet + SG allowing SSH from trusted IP
 Deployed through Console, CLI, and CloudFormation
 
 Repository Contents
+
 mediacatalog-dynamodb-iam-ec2/
 │
 ├── ec2-trust-policy.json
@@ -35,6 +36,7 @@ mediacatalog-dynamodb-iam-ec2/
 ├── movies-cf-batch.json
 │
 └── validation-screenshots/
+
     ├── 01-dynamodb-console-scan-mediacatalog.png
     ├── 02-iam-policy-readonly-dynamodb.png
     ├── 03-ec2-console-mediacatalog-reader.png
