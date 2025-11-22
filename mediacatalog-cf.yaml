@@ -1,0 +1,104 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  MediaCatalogCF – DynamoDB + EC2 with least-privilege IAM role for read-only access.
+
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Name of an existing EC2 KeyPair for SSH
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC ID for the EC2 instance
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: Public subnet ID for the EC2 instance
+  SSHLocation:
+    Type: String
+    Default: 0.0.0.0/0
+    Description: CIDR range that can SSH to the instance
+
+Resources:
+  MediaCatalogCFTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: MediaCatalogCF
+      AttributeDefinitions:
+        - AttributeName: Title
+          AttributeType: S
+      KeySchema:
+        - AttributeName: Title
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  MediaCatalogCFRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: MediaCatalogCFReadRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: MediaCatalogCFReadOnly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: AllowReadMediaCatalogCF
+                Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:Scan
+                  - dynamodb:DescribeTable
+                  - dynamodb:Query
+                Resource: !GetAtt MediaCatalogCFTable.Arn
+
+  MediaCatalogCFInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: MediaCatalogCFInstanceProfile
+      Path: /
+      Roles:
+        - !Ref MediaCatalogCFRole
+
+  MediaCatalogCFSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH access
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref SSHLocation
+
+  MediaCatalogCFInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !Sub '{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64}}'
+      KeyName: !Ref KeyName
+      SubnetId: !Ref SubnetId
+      SecurityGroupIds:
+        - !Ref MediaCatalogCFSecurityGroup
+      IamInstanceProfile: !Ref MediaCatalogCFInstanceProfile
+      Tags:
+        - Key: Name
+          Value: MediaCatalogCF-EC2
+
+Outputs:
+  TableName:
+    Description: DynamoDB table name
+    Value: !Ref MediaCatalogCFTable
+  InstanceId:
+    Description: EC2 instance ID
+    Value: !Ref MediaCatalogCFInstance
+  InstancePublicIP:
+    Description: Public IP of the EC2 instance
+    Value: !GetAtt MediaCatalogCFInstance.PublicIp
+  RoleName:
+    Description: IAM Role name
+    Value: !Ref MediaCatalogCFRole

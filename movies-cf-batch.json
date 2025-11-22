@@ -1,0 +1,104 @@
+{
+  "MediaCatalogCF": [
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Friday"},
+          "Genre": {"S": "Comedy"},
+          "ReleaseDate": {"S": "1995-04-26"},
+          "Rating": {"N": "8.0"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Next Friday"},
+          "Genre": {"S": "Comedy"},
+          "ReleaseDate": {"S": "2000-01-12"},
+          "Rating": {"N": "7.1"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Friday After Next"},
+          "Genre": {"S": "Comedy"},
+          "ReleaseDate": {"S": "2002-11-22"},
+          "Rating": {"N": "6.8"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Boyz n the Hood"},
+          "Genre": {"S": "Crime Drama"},
+          "ReleaseDate": {"S": "1991-07-12"},
+          "Rating": {"N": "8.3"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Menace II Society"},
+          "Genre": {"S": "Crime Drama"},
+          "ReleaseDate": {"S": "1993-05-26"},
+          "Rating": {"N": "7.5"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Rush Hour"},
+          "Genre": {"S": "Action-Comedy"},
+          "ReleaseDate": {"S": "1998-09-18"},
+          "Rating": {"N": "7.0"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Rush Hour 2"},
+          "Genre": {"S": "Action-Comedy"},
+          "ReleaseDate": {"S": "2001-08-03"},
+          "Rating": {"N": "6.9"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Bad Boys"},
+          "Genre": {"S": "Action-Comedy"},
+          "ReleaseDate": {"S": "1995-04-07"},
+          "Rating": {"N": "7.0"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "Bad Boys II"},
+          "Genre": {"S": "Action-Comedy"},
+          "ReleaseDate": {"S": "2003-07-18"},
+          "Rating": {"N": "6.6"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Title": {"S": "The Fifth Element"},
+          "Genre": {"S": "Sci-Fi / Action"},
+          "ReleaseDate": {"S": "1997-05-09"},
+          "Rating": {"N": "7.6"}
+        }
+      }
+    }
+  ]
+}
