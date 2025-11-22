@@ -2,7 +2,7 @@ DynamoDB Read-Only Access from EC2 (Console, CLI, and CloudFormation)
 Author: Will A. Soto — Cloud DevOps Engineer ☁️
 Overview
 
-This project demonstrates three different deployment methods (AWS Console, AWS CLI, and CloudFormation) to implement a secure, read-only DynamoDB architecture accessed from an EC2 instance using an IAM instance profile — with no stored credentials on the instance.
+This project demonstrates three different deployment methods (AWS Console, AWS CLI, and CloudFormation) to implement a secure, read-only DynamoDB architecture accessed from an EC2 instance using an IAM instance profile — with no stored credentials on the server.
 
 This mirrors real DevOps workflows:
 
@@ -22,9 +22,9 @@ IAM role with read-only DynamoDB permissions
 
 No access keys stored on the instance
 
-Public subnet + security group allowing SSH from trusted IP
+Public subnet + SG allowing SSH from trusted IP
 
-Deployed three different ways (Console, CLI, CloudFormation)
+Deployed through Console, CLI, and CloudFormation
 
 Repository Contents
 mediacatalog-dynamodb-iam-ec2/
@@ -65,7 +65,7 @@ No credentials stored on instance
 
 2. AWS CLI (Fully Scripted Deployment)
 
-Used CLI commands to automate:
+Automated provisioning using:
 
 aws dynamodb create-table
 aws dynamodb batch-write-item
@@ -88,23 +88,23 @@ EC2 instance
 
 Security group
 
-All deployed in a single IaC workflow.
+End-to-end IaC deployment with reusable, version-controlled configuration.
 
-Validation Results
+Validation
 
-Across all three deployment methods:
+Across all three methods:
 
-✅ DynamoDB scan works
+✔ DynamoDB scan works
 
-❌ PutItem fails with AccessDenied (intended)
+✔ EC2 assumes IAM role successfully
 
-✅ EC2 uses IAM instance profile, not access keys
+✔ No access keys stored
 
-✅ Architecture is identical across Console, CLI, and CloudFormation
+❌ Write operations blocked (intended behavior)
 
-📸 All proof stored in validation-screenshots/
+📸 All outputs stored in validation-screenshots/
 
 Concluding Insights
 
-Delivering the same architecture through Console, CLI, and CloudFormation demonstrates versatility across operational, automated, and IaC-based cloud workflows.
-This repository serves as a reusable blueprint for secure, read-only DynamoDB access patterns in AWS.
+Delivering the same architecture three different ways highlights versatility in DevOps workflows — from hands-on validation to automation to full IaC.
+This repository serves as a reusable blueprint for secure, role-based DynamoDB access patterns in AWS.
