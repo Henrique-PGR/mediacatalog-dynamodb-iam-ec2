@@ -35,7 +35,6 @@ mediacatalog-dynamodb-iam-ec2/
 ├── movies-cf-batch.json
 │
 └── validation-screenshots/
-
     ├── 01-dynamodb-console-scan-mediacatalog.png
     ├── 02-iam-policy-readonly-dynamodb.png
     ├── 03-ec2-console-mediacatalog-reader.png
@@ -46,7 +45,6 @@ mediacatalog-dynamodb-iam-ec2/
     ├── 08-ec2-mediacatalogcli-scan-and-putitem-error.png
     ├── 09-cloudformation-stack-create-complete.png
     └── 10-ec2-cloudformation-mediacatalogcf-ec2.png
-
 Deployment Methods
 1. AWS Console (Hands-On Validation)
 
@@ -67,14 +65,11 @@ No credentials stored on instance
 2. AWS CLI (Fully Scripted Deployment)
 
 Automated provisioning using:
-
 aws dynamodb create-table
 aws dynamodb batch-write-item
 aws iam create-role
 aws iam put-role-policy
 aws ec2 run-instances
-
-
 Ensures repeatability and automation readiness.
 
 3. CloudFormation (Infrastructure-as-Code)
@@ -104,8 +99,3 @@ Across all three methods:
 ❌ Write operations blocked (intended behavior)
 
 📸 All outputs stored in validation-screenshots/
-
-Concluding Insights
-
-Delivering the same architecture three different ways highlights versatility in DevOps workflows — from hands-on validation to automation to full IaC.
-This repository serves as a reusable blueprint for secure, role-based DynamoDB access patterns in AWS.
