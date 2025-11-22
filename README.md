@@ -2,7 +2,7 @@ DynamoDB Read-Only Access from EC2 (Console, CLI, and CloudFormation)
 Author: Will A. Soto — Cloud DevOps Engineer ☁️
 Overview
 
-This project demonstrates three different deployment methods (AWS Console, AWS CLI, and CloudFormation) to implement a secure, read-only DynamoDB architecture accessed from an EC2 instance using an IAM instance profile — with no stored credentials on the server.
+This project demonstrates three different deployment methods (AWS Console, AWS CLI, and CloudFormation) to implement a secure, read-only DynamoDB architecture accessed from an EC2 instance using an IAM instance profile — with no stored credentials on the instance.
 
 This mirrors real DevOps workflows:
 
@@ -22,7 +22,7 @@ IAM role with read-only DynamoDB permissions
 
 No access keys stored on the instance
 
-Public subnet + SG allowing SSH from trusted IP
+Public subnet + security group allowing SSH from trusted IP
 
 Deployed three different ways (Console, CLI, CloudFormation)
 
@@ -47,7 +47,7 @@ mediacatalog-dynamodb-iam-ec2/
     └── 10-ec2-cloudformation-mediacatalogcf-ec2.png
 
 Deployment Methods
-1. AWS Console (Manual Validation)
+1. AWS Console (Hands-On Validation)
 
 Created DynamoDB table MediaCatalog
 
@@ -57,15 +57,15 @@ Launched EC2 instance with MediaCatalogReadRole
 
 Verified:
 
-Scan works
+Scan allowed
 
 PutItem denied
 
-No stored credentials
+No credentials stored on instance
 
-2. AWS CLI (Fully Scripted)
+2. AWS CLI (Fully Scripted Deployment)
 
-Includes:
+Used CLI commands to automate:
 
 aws dynamodb create-table
 aws dynamodb batch-write-item
@@ -74,16 +74,11 @@ aws iam put-role-policy
 aws ec2 run-instances
 
 
-Validates automation and repeatability.
+Ensures repeatability and automation readiness.
 
-3. CloudFormation (IaC)
+3. CloudFormation (Infrastructure-as-Code)
 
-All resources deployed using:
-
-mediacatalog-cf.yaml
-
-
-CloudFormation creates:
+CloudFormation template (mediacatalog-cf.yaml) provisions:
 
 DynamoDB table
 
@@ -93,21 +88,23 @@ EC2 instance
 
 Security group
 
-Perfect for production standardization and CI/CD pipelines.
+All deployed in a single IaC workflow.
 
-Validation
+Validation Results
 
-All three deployments produced identical outcomes:
+Across all three deployment methods:
 
-✅ Scan allowed
-❌ Write operations blocked
-✅ Instance uses IAM role (not access keys)
-✅ Template fully reproducible
+✅ DynamoDB scan works
 
-See the validation-screenshots/ folder for complete output.
+❌ PutItem fails with AccessDenied (intended)
+
+✅ EC2 uses IAM instance profile, not access keys
+
+✅ Architecture is identical across Console, CLI, and CloudFormation
+
+📸 All proof stored in validation-screenshots/
 
 Concluding Insights
 
-Implementing the same architecture three different ways strengthens cloud fluency and demonstrates adaptability across operational, automated, and IaC-driven environments.
-
-This repository serves as a reference blueprint for secure, role-based DynamoDB access from EC2, applicable to internal dashboards, analytics tools, and read-heavy microservices.
+Delivering the same architecture through Console, CLI, and CloudFormation demonstrates versatility across operational, automated, and IaC-based cloud workflows.
+This repository serves as a reusable blueprint for secure, read-only DynamoDB access patterns in AWS.
