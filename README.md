@@ -36,7 +36,6 @@ mediacatalog-dynamodb-iam-ec2/
 ├── movies-cf-batch.json
 │
 └── validation-screenshots/
-
     ├── 01-dynamodb-console-scan-mediacatalog.png
     ├── 02-iam-policy-readonly-dynamodb.png
     ├── 03-ec2-console-mediacatalog-reader.png
@@ -47,6 +46,8 @@ mediacatalog-dynamodb-iam-ec2/
     ├── 08-ec2-mediacatalogcli-scan-and-putitem-error.png
     ├── 09-cloudformation-stack-create-complete.png
     └── 10-ec2-cloudformation-mediacatalogcf-ec2.png
+
+
 Deployment Methods
 1. AWS Console (Hands-On Validation)
 
